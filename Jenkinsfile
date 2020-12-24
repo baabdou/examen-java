@@ -11,5 +11,11 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
+         stage('SonarQube analysis') {
+           def mvnHome = tool name: 'maven-3', type: 'maven'
+             withSonarQubeEnv('sonar-6'){
+                 sh "${mvnHome}/bin/mvn sonar:sonar"
+    }
+  }
     }
 }
