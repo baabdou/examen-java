@@ -1,10 +1,12 @@
-def mvnHome = tool name: 'maven-3', type: 'maven'
 pipeline {
     agent {
        docker {
         image 'maven:3-alpine'
         args '-v /root/.m2:/root/.m2'
         }
+    }
+    tools {
+        maven 'Maven 3.6.3' 
     }
     stages {
         stage('Build') {
