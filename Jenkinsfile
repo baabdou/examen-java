@@ -14,7 +14,9 @@ pipeline {
          stage('SonarQube analysis') {
              steps {
                 withSonarQubeEnv('sonar-6'){
-                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+                     withMaven(maven:'Maven 3.5') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
                 }
              }
   }
