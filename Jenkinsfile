@@ -11,10 +11,13 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-         stage('SonarQube analysis') {
+         stage('SonarQube') {
+             environment {
+                scannerHome = tool 'SonarQubeScanner'
+            }
              steps {
                 withSonarQubeEnv('sonar-6'){
-                    sh 'mvn sonar:sonar'
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
              }
   }
