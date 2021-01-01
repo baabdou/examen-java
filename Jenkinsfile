@@ -1,7 +1,7 @@
 pipeline {
     agent {
        docker {
-        image 'maven:4-alpine'
+        image 'maven:3-alpine'
         args '-v /root/.m2:/root/.m2'
         }
     }
@@ -11,7 +11,7 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-         stage('SonarQube') {
+         stage('SonarQube server') {
              steps {
                 withSonarQubeEnv('sonar-6'){
                     sh "mvn sonar:sonar"
