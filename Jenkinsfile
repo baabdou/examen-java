@@ -11,12 +11,5 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-         stage('SonarQube server') {
-             steps {
-                withSonarQubeEnv('sonar-6'){
-                    sh "mvn sonar:sonar"
-                }
-             }
-  }
     }
 }
