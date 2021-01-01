@@ -12,12 +12,9 @@ pipeline {
             }
         }
          stage('SonarQube') {
-             environment {
-                scannerHome = tool 'SonarQubeScanner'
-            }
              steps {
                 withSonarQubeEnv('sonar-6'){
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh "maven sonar:sonar"
                 }
              }
   }
